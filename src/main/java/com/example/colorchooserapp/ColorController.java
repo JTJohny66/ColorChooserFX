@@ -39,16 +39,15 @@ public class ColorController {
         TextField src = (TextField) e.getSource();
         String text = src.getText();
 
-        // Allow user to type without errors when field is empty
         if (text == null || text.isEmpty()) {
             return;
         }
 
         try {
             int value = Integer.parseInt(text);
-            value = Math.max(0, Math.min(255, value)); // clamp 0–255
+            value = Math.max(0, Math.min(255, value));
 
-            // Only update the slider that matches the field
+
             if (src == redField) {
                 redSlider.setValue(value);
             } else if (src == greenField) {
@@ -57,14 +56,14 @@ public class ColorController {
                 blueSlider.setValue(value);
             }
 
-            // Update rectangle color after any field change
+
             rectangle.setFill(Color.rgb(
                     (int) redSlider.getValue(),
                     (int) greenSlider.getValue(),
                     (int) blueSlider.getValue()
             ));
         } catch (NumberFormatException ex) {
-            // Optional: let user finish typing without crashing
+
             System.out.println("Invalid number input, waiting for complete value");
         }
     }
